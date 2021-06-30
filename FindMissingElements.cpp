@@ -29,7 +29,10 @@ public:
    void Append(int x);
    void MissingOne(int x);
    void MissingMany(int x);
-};
+   void MissingNew(int a, int b,int x);
+   int Max();
+   int Min();
+   };
 void Array:: Append(int x)
 {
   int i=0;
@@ -76,7 +79,51 @@ for(int i=0;i<n;i++)
 }
    
 }
+void Array :: MissingNew(int a,int b,int x)
+{
+  int *B;
+  B=(int *)malloc(length*sizeof(int));
+  for(int i=0;i<x;i++)
+  {
+    B[i]=0;
+  }
+  int l=b;
+  int h=a;
+  int n=x;
+  for(int i=0;i<n;i++)
+  {
+    B[A[i]]++;
 
+  }
+  for(int i=l;i<=h;i++)
+  {
+    if (B[i]==0)
+      cout<<"\n Missing Elements is \n"<< i;
+  }
+
+}
+int Array::Max()
+{
+ int max=A[0];
+ int i;
+ for(i=1;i<length;i++)
+ {
+ if(A[i]>max)
+ max=A[i];
+ }
+ return max;
+}
+int Array::Min()
+{
+ int min=A[0];
+ int i;
+ for(i=1;i<length;i++)
+ {
+ if(A[i]<min)
+ min=A[i];
+ }
+ return min;
+}
  int main() {
    Array *arr;
    int sz,x;
@@ -91,9 +138,14 @@ for(int i=0;i<n;i++)
    arr->Append(x);
  }
    arr->Display();
+   int max=arr->Max();
+   int min=arr->Min();
+   arr->MissingNew(max,min,sz);
+
+
   // arr->MissingOne(sz);
-   arr->MissingMany(sz);
- 
+  // arr->MissingMany(sz);
+   
  
   return 0;
 }
